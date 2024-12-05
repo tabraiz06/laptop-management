@@ -12,15 +12,17 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/users/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://laptop-management-backend.vercel.app/api/users/login",
+        {
+          email,
+          password,
+        }
+      );
       login(res.data.user);
-      localStorage.setItem('user',res.data.user.name)
-     
+      localStorage.setItem("user", res.data.user.name);
 
-      localStorage.setItem('token',res.data.token)
+      localStorage.setItem("token", res.data.token);
       navigate(res.data.user.isAdmin ? "/admin" : "/employee");
     } catch (error) {
       console.error(error);

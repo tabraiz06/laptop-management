@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const AddLaptop = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const { fetchLaptops } = useAuth();
   const [laptop, setLaptop] = useState({
     brand: "",
@@ -21,12 +21,16 @@ const AddLaptop = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    await axios.post("http://localhost:5000/api/laptops", laptop, {
-      headers: { token: localStorage.getItem("token") },
-    });
-    fetchLaptops()
+      await axios.post(
+        "https://laptop-management-backend.vercel.app/api/laptops",
+        laptop,
+        {
+          headers: { token: localStorage.getItem("token") },
+        }
+      );
+      fetchLaptops();
       alert("Laptop added successfully!");
-      navigate('/admin')
+      navigate("/admin");
       setLaptop({ brand: "", model: "", serialNumber: "", purchaseDate: "" });
     } catch (error) {
       console.error("Error adding laptop:", error);

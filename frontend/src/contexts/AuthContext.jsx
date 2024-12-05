@@ -15,25 +15,28 @@ export const AuthProvider = ({ children }) => {
 
   const [laptops, setLaptops] = useState([]);
   const [issues, setIssues] = useState([]);
-  
 
   const fetchLaptops = async () => {
-    const res = await axios.get("http://localhost:5000/api/laptops", {
-      headers: { token: localStorage.getItem("token") },
-    });
+    const res = await axios.get(
+      "https://laptop-management-backend.vercel.app/api/laptops",
+      {
+        headers: { token: localStorage.getItem("token") },
+      }
+    );
     setLaptops(res.data);
   };
   const fetchIssues = async () => {
-    const res = await axios.get("http://localhost:5000/api/issues", {
-      headers: { token: localStorage.getItem("token") },
-    });
-    setIssues(res.data)
-    
+    const res = await axios.get(
+      "https://laptop-management-backend.vercel.app/api/issues",
+      {
+        headers: { token: localStorage.getItem("token") },
+      }
+    );
+    setIssues(res.data);
   };
-  useEffect(()=>{
-    fetchIssues()
-
-  },[])
+  useEffect(() => {
+    fetchIssues();
+  }, []);
   return (
     <AuthContext.Provider
       value={{

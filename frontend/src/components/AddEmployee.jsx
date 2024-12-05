@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [employee, setEmployee] = useState({
     name: "",
     email: "",
@@ -19,9 +19,13 @@ const AddEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/employees", employee,{headers:{token:localStorage.getItem('token')}});
+      await axios.post(
+        "https://laptop-management-backend.vercel.app/api/employees",
+        employee,
+        { headers: { token: localStorage.getItem("token") } }
+      );
       alert("Employee added successfully!");
-      navigate('/admin')
+      navigate("/admin");
       setEmployee({ name: "", email: "", password: "", department: "" });
     } catch (error) {
       console.error("Error adding employee:", error);

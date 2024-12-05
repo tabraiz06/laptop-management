@@ -2,23 +2,21 @@ import axios from "axios";
 import React from "react";
 
 const LaptopDetails = ({ laptop, fetchAssignedLaptop }) => {
-  
   if (!laptop) {
     return <p>No laptop assigned yet.</p>;
   }
 
   const handleUnAssigned = async (id) => {
     const res = await axios.delete(
-      `http://localhost:5000/api/assignments/${id}`,
+      `https://laptop-management-backend.vercel.app/api/assignments/${id}`,
       { headers: { token: localStorage.getItem("token") } }
     );
-    fetchAssignedLaptop()
-   
+    fetchAssignedLaptop();
   };
 
   return (
     <div className="p-4 bg-blue-100 rounded shadow ">
-      <div className="flex flex-wrap">
+      <div className="flex flex-col gap-4">
         {laptop.map((laptops) => (
           <div key={laptops._id}>
             <p className="flex gap-4">

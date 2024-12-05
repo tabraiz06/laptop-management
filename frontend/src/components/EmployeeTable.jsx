@@ -13,7 +13,7 @@ const EmployeeTable = ({ employees, onRemove }) => {
       </thead>
       <tbody>
         {employees.map((employee) => (
-          <tr key={employee.id} className="hover:bg-gray-50">
+          <tr key={employee._id} className="hover:bg-gray-50">
             <td className="p-2 border border-gray-300">{employee.name}</td>
             <td className="p-2 border border-gray-300">{employee.email}</td>
             <td className="p-2 border border-gray-300">

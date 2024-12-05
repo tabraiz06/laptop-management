@@ -8,7 +8,8 @@ const LaptopTable = ({ laptops, onEdit, onRemove }) => {
   const fetchIssues = async (laptopId) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/issues/${laptopId}`,{headers:{token:localStorage.getItem('token')}}
+        `https://laptop-management-backend.vercel.app/api/issues/${laptopId}`,
+        { headers: { token: localStorage.getItem("token") } }
       );
       setIssues(res.data);
       setShowModal(true);
@@ -36,7 +37,7 @@ const LaptopTable = ({ laptops, onEdit, onRemove }) => {
         </thead>
         <tbody>
           {laptops.map((laptop) => (
-            <tr key={laptop.id} className="hover:bg-gray-50">
+            <tr key={laptop._id} className="hover:bg-gray-50">
               <td className="p-2 border border-gray-300">{laptop.brand}</td>
               <td className="p-2 border border-gray-300">{laptop.model}</td>
               <td className="p-2 border border-gray-300">

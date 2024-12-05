@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import OverviewCard from "../components/OverviewCard";
 
-
 import EmployeeTable from "../components/EmployeeTable";
 
 import LaptopTable from "../components/LaptopTable";
 import LaptopEditModal from "../components/LaptopEditModal";
 import { useNavigate } from "react-router-dom";
-
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -21,9 +19,6 @@ const AdminDashboard = () => {
   const [laptops, setLaptops] = useState([]);
   const [editLaptop, setEditLaptop] = useState(null);
   const [employees, setEmployees] = useState([]);
-  
-  
-
 
   useEffect(() => {
     fetchStats();
@@ -32,29 +27,40 @@ const AdminDashboard = () => {
   }, []);
 
   const fetchStats = async () => {
-    const res = await axios.get("http://localhost:5000/api/admin/stats");
+    const res = await axios.get(
+      "https://laptop-management-backend.vercel.app/api/admin/stats"
+    );
     setStats(res.data);
   };
 
   const fetchLaptops = async () => {
-    const res = await axios.get("http://localhost:5000/api/laptops/", {
-      headers: { token: localStorage.getItem("token") },
-    });
+    const res = await axios.get(
+      "https://laptop-management-backend.vercel.app/api/laptops/",
+      {
+        headers: { token: localStorage.getItem("token") },
+      }
+    );
     setLaptops(res.data);
   };
 
   const fetchEmployees = async () => {
-    const res = await axios.get("http://localhost:5000/api/employees", {
-      headers: { token: localStorage.getItem("token") },
-    });
+    const res = await axios.get(
+      "https://laptop-management-backend.vercel.app/api/employees",
+      {
+        headers: { token: localStorage.getItem("token") },
+      }
+    );
     setEmployees(res.data);
   };
 
   const handleRemoveEmployee = async (id) => {
     if (window.confirm("Are you sure you want to remove this employee?")) {
-      await axios.delete(`http://localhost:5000/api/employees/${id}`, {
-        headers: { token: localStorage.getItem("token") },
-      });
+      await axios.delete(
+        `https://laptop-management-backend.vercel.app/api/employees/${id}`,
+        {
+          headers: { token: localStorage.getItem("token") },
+        }
+      );
       fetchEmployees();
     }
   };
@@ -64,20 +70,24 @@ const AdminDashboard = () => {
   };
   const handleRemove = async (id) => {
     if (window.confirm("Are you sure you want to delete this laptop?")) {
-      await axios.delete(`http://localhost:5000/api/laptops/${id}`, {
-        headers: { token: localStorage.getItem("token") },
-      });
+      await axios.delete(
+        `https://laptop-management-backend.vercel.app/api/laptops/${id}`,
+        {
+          headers: { token: localStorage.getItem("token") },
+        }
+      );
       fetchLaptops();
     }
   };
   const handleSave = async () => {
     await axios.put(
-      `http://localhost:5000/api/laptops/${editLaptop._id}`,
-      editLaptop,{headers:{token:localStorage.getItem('token')}}
+      `https://laptop-management-backend.vercel.app/api/laptops/${editLaptop._id}`,
+      editLaptop,
+      { headers: { token: localStorage.getItem("token") } }
     );
     setEditLaptop(null);
     fetchLaptops();
-    fetchStats()
+    fetchStats();
   };
   const handleCloseModal = () => {
     setEditLaptop(null);

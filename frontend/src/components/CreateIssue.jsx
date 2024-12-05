@@ -3,22 +3,25 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const CreateIssue = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [laptops, setLaptops] = useState([]);
   const [issue, setIssue] = useState({
     laptopId: "",
     description: "",
     priority: "Low",
-    reportedBy:""
+    reportedBy: "",
   });
 
   useEffect(() => {
     // Fetch all laptops
     const fetchLaptops = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/laptops", {
-          headers: { token: localStorage.getItem("token") },
-        });
+        const res = await axios.get(
+          "https://laptop-management-backend.vercel.app/api/laptops",
+          {
+            headers: { token: localStorage.getItem("token") },
+          }
+        );
         setLaptops(res.data);
       } catch (error) {
         console.error("Error fetching laptops:", error);
@@ -36,10 +39,13 @@ const CreateIssue = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
-      await axios.post("http://localhost:5000/api/issues", issue,{headers:{token:localStorage.getItem('token')}});
+      await axios.post(
+        "https://laptop-management-backend.vercel.app/api/issues",
+        issue,
+        { headers: { token: localStorage.getItem("token") } }
+      );
       alert("Issue created successfully!");
-      navigate('/admin')
+      navigate("/admin");
       setIssue({ laptopId: "", description: "", priority: "Low" });
     } catch (error) {
       console.error("Error creating issue:", error);
@@ -56,7 +62,7 @@ const CreateIssue = () => {
             Enter Name
           </label>
           <input
-          name="reportedBy"
+            name="reportedBy"
             className="w-full p-3 border rounded"
             type="text"
             value={issue.reportedBy}

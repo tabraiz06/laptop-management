@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AssignLaptop = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const [employees, setEmployees] = useState([]);
   const [laptops, setLaptops] = useState([]);
   const [assignment, setAssignment] = useState({
@@ -15,9 +15,12 @@ const AssignLaptop = () => {
     // Fetch employees
     const fetchEmployees = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/employees", {
-          headers: { token: localStorage.getItem("token") },
-        });
+        const res = await axios.get(
+          "https://laptop-management-backend.vercel.app/api/employees",
+          {
+            headers: { token: localStorage.getItem("token") },
+          }
+        );
 
         setEmployees(res.data);
       } catch (error) {
@@ -31,10 +34,13 @@ const AssignLaptop = () => {
   // Fetch available laptops
   const fetchLaptops = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/laptops", {
-        headers: { token: localStorage.getItem("token") },
-      });
-      
+      const res = await axios.get(
+        "https://laptop-management-backend.vercel.app/api/laptops",
+        {
+          headers: { token: localStorage.getItem("token") },
+        }
+      );
+
       setLaptops(res.data.filter((laptop) => laptop.status === "available"));
     } catch (error) {
       console.error("Error fetching laptops:", error);
@@ -50,11 +56,15 @@ const AssignLaptop = () => {
     e.preventDefault();
     try {
       e.preventDefault();
-      await axios.post("http://localhost:5000/api/assignments", assignment, {
-        headers: { token: localStorage.getItem("token") },
-      });
+      await axios.post(
+        "https://laptop-management-backend.vercel.app/api/assignments",
+        assignment,
+        {
+          headers: { token: localStorage.getItem("token") },
+        }
+      );
       fetchLaptops();
-      navigate('/admin')
+      navigate("/admin");
       setAssignment({ laptopId: "", employeeId: "" });
 
       alert("Laptop assigned successfully!");
