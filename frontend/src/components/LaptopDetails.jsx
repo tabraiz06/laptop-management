@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 const LaptopDetails = ({ laptop, fetchAssignedLaptop }) => {
-  console.log(laptop);
+  
   if (!laptop) {
     return <p>No laptop assigned yet.</p>;
   }
@@ -13,7 +13,7 @@ const LaptopDetails = ({ laptop, fetchAssignedLaptop }) => {
       { headers: { token: localStorage.getItem("token") } }
     );
     fetchAssignedLaptop()
-    // console.log(res.data)
+   
   };
 
   return (

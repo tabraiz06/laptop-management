@@ -36,7 +36,7 @@ const CreateIssue = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(issue)
+      
       await axios.post("http://localhost:5000/api/issues", issue,{headers:{token:localStorage.getItem('token')}});
       alert("Issue created successfully!");
       navigate('/admin')

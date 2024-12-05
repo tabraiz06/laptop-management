@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
       headers: { token: localStorage.getItem("token") },
     });
     setIssues(res.data)
-    console.log(res.data)
+    
   };
   useEffect(()=>{
     fetchIssues()

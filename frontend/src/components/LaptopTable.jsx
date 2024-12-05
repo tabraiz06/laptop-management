@@ -44,7 +44,7 @@ const LaptopTable = ({ laptops, onEdit, onRemove }) => {
               </td>
               <td className="p-2 border border-gray-300">{laptop.status}</td>
               <td className="p-2 border border-gray-300">
-                <div className="flex gap-4">
+                <div className="flex gap-4 justify-center">
                   <button
                     onClick={() => onEdit(laptop)}
                     className="p-2 mr-2 text-white bg-blue-500 rounded hover:bg-blue-600"

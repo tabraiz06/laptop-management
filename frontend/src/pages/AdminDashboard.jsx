@@ -83,7 +83,7 @@ const AdminDashboard = () => {
     setEditLaptop(null);
   };
   return (
-    <div className="p-6">
+    <div className="p-10">
       <h1 className="mb-6 text-3xl font-bold">Admin Dashboard</h1>
       <div className="mb-8 space-y-4 flex gap-4">
         <button

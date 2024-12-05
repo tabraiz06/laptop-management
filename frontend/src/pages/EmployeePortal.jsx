@@ -19,7 +19,7 @@ const EmployeePortal = () => {
       headers: { token: localStorage.getItem("token") },
     });
     setAssignedLaptop(res.data);
-    console.log(res.data)
+    
     setEmployeeId(res.data[0].employeeId._id)
   };
 
@@ -35,7 +35,7 @@ const EmployeePortal = () => {
     );
     alert("Request submitted.");
     setLaptopRequest("");
-  console.log(res.data)
+ 
   };
 
   const handleReportIssue = async (e) => {

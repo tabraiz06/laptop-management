@@ -18,7 +18,7 @@ const Login = () => {
       });
       login(res.data.user);
       localStorage.setItem('user',res.data.user.name)
-      console.log(res.data.user.name)
+     
 
       localStorage.setItem('token',res.data.token)
       navigate(res.data.user.isAdmin ? "/admin" : "/employee");

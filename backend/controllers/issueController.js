@@ -4,7 +4,7 @@ const Laptop = require("../models/Laptop");
 exports.reportIssue = async (req, res) => {
   try {
     const { laptopId, description, priority, reportedBy } = req.body;
-    console.log(req.body)
+    
 await Laptop.findByIdAndUpdate(laptopId, { status: "maintenance" });
     const issue = await Issue.create({
       laptopId,

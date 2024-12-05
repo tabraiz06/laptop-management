@@ -34,7 +34,7 @@ const AssignLaptop = () => {
       const res = await axios.get("http://localhost:5000/api/laptops", {
         headers: { token: localStorage.getItem("token") },
       });
-      console.log(res.data)
+      
       setLaptops(res.data.filter((laptop) => laptop.status === "available"));
     } catch (error) {
       console.error("Error fetching laptops:", error);
@@ -101,11 +101,22 @@ const AssignLaptop = () => {
             required
           >
             <option value="">-- Select a Laptop --</option>
-            {laptops.map((laptop) => (
-              <option key={laptop._id} value={laptop._id}>
-                {laptop.brand} {laptop.model} ({laptop.serialNumber})
-              </option>
-            ))}
+            {laptops.length > 0 ? (
+              <>
+                {laptops.map((laptop) => (
+                  <option key={laptop._id} value={laptop._id}>
+                    {laptop.brand} {laptop.model} ({laptop.serialNumber})
+                  </option>
+                ))}
+              </>
+            ) : (
+              <>
+                <option key={"001"} value={""}>
+                  no laptop is available to assign
+                </option>
+              </>
+            )}
+            {}
           </select>
         </div>
 

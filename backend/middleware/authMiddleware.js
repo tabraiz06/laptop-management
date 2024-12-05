@@ -9,7 +9,7 @@ const protect = (roles=[]) => {
     try {
       const decoded = jwt.verify(token, "SECRET_KEY");
       req.user = decoded;
-      console.log(roles)
+      
        if (roles.length<0 ) {
          return res.status(403).json({ message: "Forbidden" });
        }
