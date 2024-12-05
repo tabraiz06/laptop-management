@@ -28,7 +28,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     const res = await axios.get(
-      "https://laptop-management-backend.vercel.app/api/admin/stats"
+      "https://laptop-management-backend.vercel.app/api/admin/stats",{headers:{token:localStorage.getItem('token')}}
     );
     setStats(res.data);
   };
