@@ -31,7 +31,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 flex-col gap-4">
+    <div className="texts ">
+      <h3 className="text-xl font-sans ">Login details</h3>
+      <span>login as admin using -email - test@gmail.com password - 123456</span><br />
+      <span>login as employee using -email - aslam@gmail.com password - 123456</span>
+    </div>
       <form
         onSubmit={handleLogin}
         className="w-full max-w-md p-6 bg-white rounded shadow-md"

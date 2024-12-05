@@ -16,7 +16,7 @@ const LaptopDetails = ({ laptop, fetchAssignedLaptop }) => {
 
   return (
     <div className="p-4 bg-blue-100 rounded shadow ">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-wrap gap-4">
         {laptop.map((laptops) => (
           <div key={laptops._id}>
             <p className="flex gap-4">
